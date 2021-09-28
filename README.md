@@ -3,5 +3,7 @@
 Em public, ficam os arquivos do Front-End
 Em data.json, fica o arquivo de dados
 Em server.py, fica o servidor (por enquanto)
-Coisas para fazer ainda:
-  - ![ ] Fazer o projeto
+## Coisas para fazer ainda:
+  - [ ] Frontend
+        - [ ] Lidar com a resposta do servidor
+        - [ ] Estilizar o site
