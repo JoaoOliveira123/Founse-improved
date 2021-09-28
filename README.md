@@ -1,4 +1,4 @@
-# Founse-improved
+# Founse
 Aqui, usei HTML e CSS para o Frontend, e Python para o Backend
 
 ---
