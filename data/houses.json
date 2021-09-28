@@ -1,0 +1,42 @@
+{
+ "cities": [
+     {
+        "Name": "Rio Das Ostras",
+        "districts": [
+                {
+                    "Name": "Marileia",
+                    "streets": [
+                        {
+                            "Name": "Rua Pastel",
+                            "houses": [
+                                {
+                                    "Price": "R$165.000",
+                                    "Name": "87A",
+                                    "MainImage": "https://www.decorfacil.com/wp-content/uploads/2017/03/20171011fachada-casa-simples-pequena-99-960x600.jpg",
+                                    "Type": "Casa"
+                                    },
+                                {
+                                    "Price": "R$143.000",
+                                    "Name": "24D",
+                                    "MainImage": "https://www.tuacasa.com.br/wp-content/uploads/2019/05/fachadas-de-casas-simples-80-730x666.jpg",
+                                    "Type": "Casa"
+                                }
+                        ]
+                            },
+                        {
+                            "Name": "Rua Da Condolência",
+                            "houses": [
+                            {
+                                "Price": "R$231.000",
+                                "Name": "14B",
+                                "MainImage": "https://plantasdecasas.com/wp-content/uploads/2017/07/planta-fachada-casa-115-fr-AG.jpg",
+                                "Type": "Casa"
+                            }
+                        ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

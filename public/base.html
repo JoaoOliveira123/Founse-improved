@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% endblock %}
+</head>
+<body>
+    {% block body %}
+        <h1>Founse</h1>
+        {% set dstrct = distircts if districts != None else '' %}
+        {% set ct = cities if cities != None else '' %}
+        {% set strt = streets if streets != None else '' %}
+        {% set nmbr = houses if houses != None else '' %}
+        <div class="inputs">
+            <form method="POST">
+                <input required type="text" name="districts" placeholder="Bairro" value="{{ dstrct }}">
+                <input name="streets" placeholder="Rua (opicional)" type="text" value="{{ strt }}">
+                <input required name="cities" placeholder="Cidade" type="text" value="{{ ct }}">
+                <input name="houses" placeholder="N° da Casa (opicional)" value="{{ nmbr }}">
+                {% if error_message %}<span>{{error_message}}</span>{% endif %}
+            <input type="submit">
+            </form>
+        </div>
+    {% endblock %}
+        
+</body>
+</html>

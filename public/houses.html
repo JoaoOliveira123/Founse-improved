@@ -1,0 +1,13 @@
+{% extends "base.html"%}
+
+{% block head %}
+    {{ super() }}
+    <title>Casas</title>
+{% endblock %} 
+
+{% block body %}
+    {{ super() }}
+    {% for i in informations_returned %}
+        <p>{{ i['houses']['Name'] }}</p>
+    {% endfor %}
+{% endblock %}
