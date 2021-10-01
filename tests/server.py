@@ -5,7 +5,7 @@ from quart import Quart, render_template, redirect, url_for, request, session, f
 from secrets import token_urlsafe
 import json
 
-app = Quart('server', template_folder='../public')
+app = Quart('www', template_folder='public')
 app.secret_key = token_urlsafe(16)
 
 async def define_template_in_post(user_informations, url_args, return_final_value=True,**kwargs):
