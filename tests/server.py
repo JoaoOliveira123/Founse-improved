@@ -100,7 +100,7 @@ async def index():
     form = await get_form()
     url_args = await mkrightdict(form, organize, continue_dict=True)
     if request.method == 'POST':
-        ur = await define_template_in_post(url_args, {}, **{'eth': (True, True, False, False), 'future_data': {}, 'master_archive_name': 'data/houses.json'})
+        ur = await define_template_in_post(url_args, {}, **{'eth': (True, True, False, False), 'future_data': {}, 'master_archive_name': '../data/houses.json'})
         if ur != 'error':
             session['user_informations'] = ur
             await flash('Search Made')
@@ -118,7 +118,7 @@ async def houses():
     url_args = await mkrightdict(form, organize, True)
     error_hapnd = ''
     if request.method == 'POST':
-        ur = define_template_in_post(url_args, {}, **{'eth': (True, True, False, False), 'future_data': {}, 'master_archive_name': 'data/houses.json'})
+        ur = define_template_in_post(url_args, {}, **{'eth': (True, True, False, False), 'future_data': {}, 'master_archive_name': '../data/houses.json'})
         if ur != 'error':
             session['user_informations'] = ur
             flash('Search made')
@@ -130,7 +130,7 @@ async def houses():
             value_to_answer = user_search
         else:
             value_to_answer = session['user_informations']
-        ur = await define_template_in_post(value_to_answer, {}, **{'eth': (True, True, False, False), 'future_data': {}, 'master_archive_name': 'data/houses.json'})
+        ur = await define_template_in_post(value_to_answer, {}, **{'eth': (True, True, False, False), 'future_data': {}, 'master_archive_name': '../data/houses.json'})
         if ur == 'error':
             error_hapnd = ur
         if len(list(ur.keys())) < 4:
