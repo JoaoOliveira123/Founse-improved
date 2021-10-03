@@ -100,7 +100,7 @@ async def index():
     form = await get_form()
     url_args = await mkrightdict(form, organize, continue_dict=True)
     if request.method == 'POST':
-        ur = await define_template_in_post(url_args, {}, **{'eth': (True, True, False, False), 'future_data': {}, 'master_archive_name': '../data/houses.json'})
+        ur = await define_template_in_post(url_args, {}, **{'eth': (True, True, False, False), 'future_data': {}, 'master_archive_name': 'data/houses.json'})
         if ur != 'error':
             session['user_informations'] = ur
             await flash('Search Made')
@@ -118,7 +118,7 @@ async def houses():
     url_args = await mkrightdict(form, organize, True)
     error_hapnd = ''
     if request.method == 'POST':
-        ur = define_template_in_post(url_args, {}, **{'eth': (True, True, False, False), 'future_data': {}, 'master_archive_name': '../data/houses.json'})
+        ur = define_template_in_post(url_args, {}, **{'eth': (True, True, False, False), 'future_data': {}, 'master_archive_name': 'data/houses.json'})
         if ur != 'error':
             session['user_informations'] = ur
             flash('Search made')
@@ -127,45 +127,45 @@ async def houses():
 
     elif request.method == 'GET':
         if not get_flashed_messages():
-            value_to_answer = user_search
+            ur = await define_template_in_post(user_search, {}, **{'eth': (True, True, False, False), 'future_data': {}, 'master_archive_name': 'data/houses.json'})
         else:
-            value_to_answer = session['user_informations']
-        ur = await define_template_in_post(value_to_answer, {}, **{'eth': (True, True, False, False), 'future_data': {}, 'master_archive_name': '../data/houses.json'})
+            ur = session['user_informations']
         if ur == 'error':
             error_hapnd = ur
-        if len(list(ur.keys())) < 4:
-            copy_of_ur = ur.copy()
-            order_of_possible_keys_htf = ['districts', 'streets', 'houses'] #htf means "hard to find"
-            for i in ur.keys(): 
-                if type(copy_of_ur[i]) == list:
-                    more_specific_values = copy_of_ur.pop(i)
-            organizer_len = len(list(copy_of_ur.keys())) - 1
-            final_value = []
-            useful_order = order_of_possible_keys_htf[organizer_len:]
-            for i in useful_order:
-                counter = 0
-                next_ld = []
-                for x in more_specific_values:
-                    if i != 'houses':
-                        dict_of_time = dict(copy_of_ur, 
-                        **{i: x['Name']}
-                        )
-                        for j in x[useful_order[useful_order.index(i) + 1]]:
-                            next_ld.append(j)
-                    else:
-                        dict_of_time = dict(copy_of_ur, 
-                        **{i: x}
-                        )
+        else:
+            if len(list(ur.keys())) < 4:
+                copy_of_ur = ur.copy()
+                order_of_possible_keys_htf = ['districts', 'streets', 'houses'] #htf means "hard to find"
+                for i in ur.keys(): 
+                    if type(copy_of_ur[i]) == list:
+                        more_specific_values = copy_of_ur.pop(i)
+                organizer_len = len(list(copy_of_ur.keys())) - 1
+                final_value = []
+                useful_order = order_of_possible_keys_htf[organizer_len:]
+                for i in useful_order:
+                    counter = 0
+                    next_ld = []
+                    for x in more_specific_values:
+                        if i != 'houses':
+                            dict_of_time = dict(copy_of_ur, 
+                            **{i: x['Name']}
+                            )
+                            for j in x[useful_order[useful_order.index(i) + 1]]:
+                                next_ld.append(j)
+                        else:
+                            dict_of_time = dict(copy_of_ur, 
+                            **{i: x}
+                            )
 
-                    if useful_order.index(i) == 0:
-                        final_value.append({})
-                    try:
-                        final_value[counter].update(dict_of_time)
-                    except:
-                        final_value.append(dict(final_value[counter-1], **dict_of_time))
-                    counter += 1
+                        if useful_order.index(i) == 0:
+                            final_value.append({})
+                        try:
+                            final_value[counter].update(dict_of_time)
+                        except:
+                            final_value.append(dict(final_value[counter-1], **dict_of_time))
+                        counter += 1
 
-                more_specific_values = next_ld
+                    more_specific_values = next_ld
         if error_hapnd == 'error':
             form['error_message'] = 'Por Favor insira algo válido'
             return await render_template('houses.html', **form)
