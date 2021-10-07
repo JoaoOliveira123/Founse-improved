@@ -3,11 +3,19 @@
 {% block head %}
     {{ super() }}
     <title>Casas</title>
-{% endblock %} 
+{% endblock %}
 
 {% block body %}
     {{ super() }}
-    {% for i in informations_returned %}
-        <p>{{ i['houses']['Name'] }}</p>
-    {% endfor %}
+    <div class="housesContainer">
+        {% for i in informations_returned %}
+            <div class="house_space">
+                <img class="house_img" src="{{ i['houses']['MainImage'] }}">
+                <p>{{ i['cities'] }}</p>
+                <p>{{ i['districts'] }}</p>
+                <p>{{ i['streets'] }}</p>
+                <p>{{ i['houses']['Name'] }}</p>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
