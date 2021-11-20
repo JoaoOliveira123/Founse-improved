@@ -81,7 +81,7 @@ async def solve_recursive_objects(master, return_args: dict, **kwgs):
                 if s["Name"] == capitalize_thing(main[i]):
                     master = s
                     break
-            if master[i] != obj_list:
+            if master not in obj_list:
                 return_args[i] = obj_list
                 before_key = i
                 continue
